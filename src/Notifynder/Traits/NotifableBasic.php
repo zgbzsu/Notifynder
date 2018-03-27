@@ -148,9 +148,12 @@ trait NotifableBasic
      * @param string $order
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getNotifications($limit = null, $order = 'desc')
+    public function getNotifications($limit = null, $order = 'desc',$offset = null)
     {
         $query = $this->getNotificationRelation()->orderBy('created_at', $order);
+        if (! is_null($offset)) {
+            $query->offset($offset);
+        }
         if (! is_null($limit)) {
             $query->limit($limit);
         }
