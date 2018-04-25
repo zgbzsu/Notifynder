@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Fenos\Notifynder\Parsers\NotificationParser;
 use Fenos\Notifynder\Builder\Notification as BuilderNotification;
+use Yeyu\Events\Created;
+use Yeyu\Events\Saved;
+use Yeyu\Events\Deleted;
 
 /**
  * Class Notification.
@@ -53,6 +56,11 @@ class Notification extends Model
         'extra' => 'array',
     ];
 
+	protected $dispatchesEvents = [
+        'created' => Created::class,
+        'saved' => Saved::class,
+        'deleted' => Deleted::class,
+    ];
     /**
      * Notification constructor.
      *
